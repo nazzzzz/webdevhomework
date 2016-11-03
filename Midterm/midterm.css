@@ -1,0 +1,279 @@
+html {
+    background: url(img/bg.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    /*If you want it to work in IE*/
+    filter: progid: DXImageTransform.Microsoft.AlphaImageLoader(src='.myBackground.jpg', sizingMethod='scale');
+    -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='myBackground.jpg', sizingMethod='scale')";
+}
+
+body {
+    margin: 0;
+}
+
+
+/*
+////////////////////////////
+header stuff
+///////////////////////////
+*/
+
+ul.topnav {
+    /* remove the default bullet point */
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    float: right;
+    margin-right: 6.5vw;
+    overflow: hidden;
+}
+
+ul.topnav li {
+    float: left;
+}
+
+ul.topnav li a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    font-family: 'Catamaran', sans-serif;
+    transition: 0.4s;
+    text-decoration: none;
+    padding: 0px 25px;
+    font-size: 25px;
+    line-height: 80px;
+}
+
+ul.topnav li a:hover {
+    color: #978265;
+}
+
+header img {
+    float: left;
+    margin-left: 7vw;
+    height: 80px;
+    width: auto;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1vh 0px;
+    margin: 0;
+    background-color: rgba(0, 0, 0, 0.85);
+    z-index: 1000000;
+}
+
+ul.topnav li.icon {
+    display: none;
+}
+
+
+/*
+////////////////////////////
+footer stuff
+///////////////////////////
+*/
+
+footer {
+    display: inline-block;
+    position: fixed;
+    bottom: 0px;
+}
+
+footer a {
+    text-decoration: none;
+    color: black;
+}
+
+i:hover {
+    background-color: black;
+    color: white;
+}
+
+i {
+    width: 50px;
+    padding: 19px 0px;
+    vertical-align: middle;
+    transition: background-color 1s, color 0.75s;
+}
+
+#icons {
+    text-align: center;
+}
+
+#icons:before {
+    content: '';
+    height: 100%;
+    margin-right: -16.5em;
+}
+
+
+/*
+////////////////////////////
+body of homepage stuff
+///////////////////////////
+*/
+
+.release_wrapper {
+    text-align: center;
+}
+
+.release_wrapper:before {
+    content: '';
+    height: 100%;
+    margin-right: -20.15em;
+}
+
+.available_wrapper {
+    text-align: center;
+}
+
+.available_wrapper:before {
+    content: '';
+    height: 100%;
+    margin-right: -14.15em;
+}
+
+.new_release {
+    position: absolute;
+    display: inline-block;
+    text-align: center;
+    z-index: 2;
+    background-color: black;
+    color: white;
+    font-family: 'Playfair Display', serif;
+}
+
+#release_title {
+    top: 30vh;
+    font-size: 45px;
+    padding: 15px;
+}
+
+#available {
+    font-family: 'Playfair Display', serif;
+    top: 39vh;
+    font-size: 25px;
+    padding: 10px;
+}
+
+/*
+////////////////////////////
+about page stuff
+///////////////////////////
+*/
+
+.about_block{
+    max-width: 100%;
+    padding:10px 25vw;
+    position: relative;
+    top:25vh;
+    background-color: rgba(0, 0, 0, 0.35);
+    color:white;
+    font-family: 'Catamaran', sans-serif;
+    font-size: 24px;
+}
+
+/*
+////////////////////////////
+music page stuff
+///////////////////////////
+*/
+
+.music_wrapper {
+    position: relative;
+    top: 30vh;
+    max-width: 100%;
+    padding: 10px 15vw;
+}
+
+.music_tiles {
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+.tile {
+    width: 33%;
+    max-width: 250px;
+    height: auto;
+    float: left;
+    margin-left: 10vw;
+    border: 2px solid rgba(151, 130, 101, 0.45);
+    box-shadow: 2px 2px 2px 2px rgba(101, 71, 73, 0.2);
+    -webkit-box-shadow: 2px 2px 2px 2px rgba(101, 71, 73, 0.2);
+    -moz-box-shadow: 2px 2px 2px 2px rgba(101, 71, 73, 0.2);
+    -o-box-shadow: 2px 2px 2px 2px rgba(101, 71, 73, 0.2);
+}
+
+.clear-fix:after {
+    display: block;
+    clear: both;
+    /* ensure some older compatability */
+    height: 0;
+    font-size: 0;
+    content: " ";
+    /* extra backup */
+    visibility: hidden;
+}
+
+
+/*
+////////////////////////////
+mobile stuff
+///////////////////////////
+*/
+
+@media only screen and (max-width: 767px) {
+    header a img {
+        display: block;
+    }
+    ul.topnav li:not(:last-child) {
+        display: none;
+    }
+    ul.topnav li.icon {
+        float: right;
+        display: inline-block;
+    }
+    ul.topnav.responsive {
+        position: relative;
+    }
+    ul.topnav.responsive li.icon {
+        position: absolute;
+        right: 20px;
+        top: 0;
+    }
+    ul.topnav.responsive li {
+        float: none;
+        display: inline;
+    }
+    ul.topnav.responsive li a {
+        display: block;
+        text-align: center;
+    }
+
+    #release_title {
+        top: 35vh;
+    }
+    #available {
+        top: 45vh;
+    }
+    .music_wrapper {
+        top: 25vh;
+    }
+    .tile {
+        display: block;
+        width: 80%;
+        max-width: 400px;
+        padding: 0px 10% 30px;
+        margin: 0;
+        border: none;
+        box-shadow: none;
+    }
+    
+}

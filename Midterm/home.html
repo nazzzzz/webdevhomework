@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Naz Official Website">
+    <meta name="keywords" content="Naz, music, edm, hip hop, artist, new york">
+    <meta name="author" content="Naz">
+    <link href="https://fonts.googleapis.com/css?family=Catamaran|Playfair+Display" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="midterm.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+    <title>NAZ</title>
+</head>
+
+<body>
+    <!-- header -->
+    <header>
+        <!-- logo -->
+        <a href="home.html">
+            <img src="img/logo.png">
+        </a>
+        <!-- navbar -->
+        <ul class="topnav" id="myTopnav">
+            <li><a href="# " style="color:#978265">HOME</a></li>
+            <li><a href="about.html ">ABOUT</a></li>
+            <li><a href="music.html ">MUSIC</a></li>
+            <li class="icon">
+                <a href="javascript:void(0);" onclick="myFunction()">&#9776;</a>
+            </li>
+        </ul>
+    </header>
+    <!--  The newest release appears in the middle -->
+    <div class="release_wrapper">
+        <a href="https://soundcloud.com/naz-music-official/love-in-pain" target="_blank">
+            <div id="release_title" class="new_release">
+                LOVE IN PAIN
+            </div>
+        </a>
+    </div>
+    <div class="available_wrapper">
+        <a href="https://soundcloud.com/naz-music-official/love-in-pain" target="_blank">
+            <div id="available" class="new_release">
+                AVAILABLE NOW
+            </div>
+        </a>
+    </div>
+    <!--footer icons-->
+    <div id="icons">
+        <footer>
+            <a href="#">
+                <i class="fa fa-facebook-square" style="font-size:36px"></i>
+            </a>
+            <a href="https://soundcloud.com/naz-music-official" target="_blank">
+                <i class="fa fa-soundcloud" style="font-size:36px"></i></a>
+            <a href="#">
+                <i class="fa fa-spotify" style="font-size:36px"></i></a>
+            <a href="#">
+                <i class="fa fa-instagram" style="font-size:36px"></i></a>
+            <a href="#">
+                <i class="fa fa-twitter-square" style="font-size:36px"></i></a>
+        </footer>
+    </div>
+    <script>
+    function myFunction() {
+        var x = document.getElementById("myTopnav");
+        /*var y = document.getElementById("release_title");
+        var z = document.getElementById("available");
+        */
+        if (x.className === "topnav") {
+            x.className += " responsive";
+        } else {
+            x.className = "topnav";
+        }
+        /*
+        if (y.className === "release_title") {
+            y.className += " responsive";
+        } else {
+            y.className = "release_title";
+        }
+
+        if (z.className === "available") {
+            z.className += " responsive";
+        } else {
+            z.className = "available";
+        }
+        */
+    }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Naz Official Website">
+    <meta name="keywords" content="Naz, music, edm, hip hop, artist, new york">
+    <meta name="author" content="Naz">
+    <link href="https://fonts.googleapis.com/css?family=Catamaran|Playfair+Display" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="midterm.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+    <title>NAZ</title>
+</head>
+
+<body>
+    <!-- header -->
+    <header>
+        <!-- logo -->
+        <a href="home.html">
+            <img src="img/logo.png">
+        </a>
+        <!-- navbar -->
+        <ul class="topnav" id="myTopnav">
+            <li><a href="home.html ">HOME</a></li>
+            <li><a href="# " style="color:#978265">ABOUT</a></li>
+            <li><a href="music.html ">MUSIC</a></li>
+            <li class="icon">
+                <a href="javascript:void(0);" onclick="myFunction()">&#9776;</a>
+            </li>
+        </ul>
+    </header>
+    <div class="about_block">
+        <p> Hello and welcome to my website, where I can share some of my music with you. I have been experimenting with different genres for a couple of years now, but I'm still just an amateur. I tend to make music based on what influences me at the time, so it's always something different. I have a pretty busy schedule outside of music, so releases are fairly spare. If you want to listen to some of them, the links are on the "Music" tab, and links to my social media accounts are below.
+            <br>
+            <br> Hope you enjoy,
+            <br> NAZ
+        </p>
+    </div>
+    <!--footer icons-->
+    <div id="icons">
+        <footer>
+            <a href="#">
+                <i class="fa fa-facebook-square" style="font-size:36px"></i>
+            </a>
+            <a href="https://soundcloud.com/naz-music-official" target="_blank">
+                <i class="fa fa-soundcloud" style="font-size:36px"></i></a>
+            <a href="#">
+                <i class="fa fa-spotify" style="font-size:36px"></i></a>
+            <a href="#">
+                <i class="fa fa-instagram" style="font-size:36px"></i></a>
+            <a href="#">
+                <i class="fa fa-twitter-square" style="font-size:36px"></i></a>
+        </footer>
+    </div>
+    <script>
+    function myFunction() {
+        var x = document.getElementById("myTopnav");
+        /*var y = document.getElementById("release_title");
+        var z = document.getElementById("available");
+        */
+        if (x.className === "topnav") {
+            x.className += " responsive";
+        } else {
+            x.className = "topnav";
+        }
+        /*
+        if (y.className === "release_title") {
+            y.className += " responsive";
+        } else {
+            y.className = "release_title";
+        }
+
+        if (z.className === "available") {
+            z.className += " responsive";
+        } else {
+            z.className = "available";
+        }
+        */
+    }
+    </script>
+</body>
+
+</html>
