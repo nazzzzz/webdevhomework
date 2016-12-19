@@ -51,10 +51,7 @@ body{
 	color:#FFCF3A;
 	margin:none;
 }
-.jumbotron p {
-	font-size: 26px;
-	color:#FFCF3A;
-}
+
 
 .form-inline .form-group input {
     width:340px;
@@ -73,9 +70,11 @@ body{
 }
 
 .btn-primary{
+  background: #FFD969;
+  color:#337ab7;
 	height:45px;
 	border-radius:2px;
-	transition-duration: 0.5s;
+	
 }
 
 
@@ -90,4 +89,26 @@ body{
   padding:1%;
   color:white;
 
+}
+
+.hidden {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+#data{
+  font-family: 'Raleway', sans-serif;
+  font-size: 24px;
+  display: none;
+  margin-top:10%;
+  padding:0 20%;
+  width: 100%;
+  background: #337ab7;
+  color:#FFD969;
+  text-align: left;
+}
+
+#sLevel, #wins, #losses, #normalWins {
+  color:#FF753A;
+  font-size:30px;
 }
