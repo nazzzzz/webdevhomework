@@ -24,23 +24,30 @@
         </div>
     </nav>
     <div class="jumbotron">
-        <div class="container">
+        <div class="container" id="hide">
             <form class="form-inline">
                 <div class="form-group">
-                    <label class = "sr-only" for="summonerName">Summoner name</label>
-                   
+                    <label class="sr-only" for="summonerName">Summoner name</label>
                     <input type="text" class="form-control" id="summonerName" placeholder="Enter your summoner name here.">
                 </div>
-                
-                <button type="submit" class="btn btn-primary">Look up</button>
+                <button type="submit" class="btn btn-primary" id="lookup">Look up</button>
             </form>
         </div>
     </div>
-    <footer class = "footer">
-    <p> Copyright Naztyboi 2016.
+    <footer class="footer">
+        <p> Copyright Naztyboi 2016.
     </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/sketch.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+
+        $("#lookup").click(function() {
+            $("#hide").hide();
+        });
+    });
+    </script>
 </body>
 
 </html>
