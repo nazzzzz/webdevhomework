@@ -6,9 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Mastery Finder</title>
+
+    <!-- load fonts -->
     <link href="https://fonts.googleapis.com/css?family=PT+Sans:700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+
+    <!-- load stylesheets -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/custom.css" rel="stylesheet">
+
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -16,13 +22,17 @@
 </head>
 
 <body>
+
+<!-- navbar -->
     <nav class="navbar navbar-inverse navbar-static-top">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">MASTERY FINDER</a>
+                <a class="navbar-brand" href="index.html">MASTERY FINDER</a>
             </div>
         </div>
     </nav>
+
+    <!-- jumbotron div for the search box -->
     <div class="jumbotron">
         <div class="container" id="hide">
             <form class="form-inline">
@@ -30,23 +40,227 @@
                     <label class="sr-only" for="summonerName">Summoner name</label>
                     <input type="text" class="form-control" id="summonerName" placeholder="Enter your summoner name here.">
                 </div>
-                <button type="submit" class="btn btn-primary" id="lookup">Look up</button>
+                <button type="button" class="btn btn-primary" id="lookup" onclick="summonerLookUp();">Look up</button>
             </form>
         </div>
     </div>
+
+    <!-- div that shows the results of processing the data -->
+    <div class="container" id="data">
+        <p style="text-align:center; font-size:40px">Hello, <span id="sName"></span></p>
+        <br>
+        <br>
+
+        <!-- div that holds the data -->
+        <div class="row">
+            <div class="col-md-4">
+                <br>
+                <br>
+                <p style="font-size: 30px">Here is your account at a glance: </p>
+            </div>
+            <div class="col-md-8" style="padding-left:35%">
+                <p>Summoner Level: <span id="sLevel"></span></p>
+                <p>Ranked wins in current season: <span id="wins"></span></p>
+                <p>Ranked losses in current season: <span id="losses"></span></p>
+                <p>All-time normal wins: <span id="normalWins"></span></p>
+            </div>
+        </div>
+        <div style="text-align:center">
+            <br>
+            <br>
+            <p>We estimate you spent at least <span id="minutes"></span> minutes in the game.</p>
+            <p>That's equivalent to <span id="days"> </span> days.</p>
+        </div>
+    </div>
+
+    <!-- footer -->
     <footer class="footer">
         <p> Copyright Naztyboi 2016.
     </footer>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/sketch.js"></script>
-    <script type="text/javascript">
-    $(document).ready(function() {
 
+    <!-- loading jquery and js -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- actual script -->
+    <script type="text/javascript">
+    
+    $(document).ready(function() {
+        //supposed to let you press enter to start search
+        /*$('#summonerName').keyup(function(e) {
+            if (e.keyCode == 13)
+                $('#lookup').click();
+        });*/
+
+        //hides the form and shows the data
         $("#lookup").click(function() {
-            $("#hide").hide();
+            $(".jumbotron").fadeOut();
+            $("#data").fadeIn(2500);
+        });
+
+
+
+    });
+    /*document.addEventListener("DOMContentLoaded", function() {
+        var myBtn = document.getElementById("lookup");
+        var hide = document.getElementById("hide");
+        myBtn.addEventListener("click", function() {
+            hide.style.visibility = "hidden";
         });
     });
+    
+    
+    
+    /*$(document).ready(function() {
+        $("#lookup").click(function() {
+            $(this).button('loading').delay(1000).queue(function() {
+                $(this).button('reset'); // button(reset)
+                $(this).dequeue();
+            });
+        });
+    });
+*/
+
+    var API_KEY = "RGAPI-499ea6d0-0050-4e59-a77a-b554e7dd2034";
+
+    function summonerLookUp() {
+
+        var summonerID;
+        
+        //get summoner name from form
+        sumName = "";
+        sumName = $("#summonerName").val();
+
+        //execute request for json
+        if (sumName !== "") {
+
+            $.ajax({
+                url: 'https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/' + sumName + '?api_key=' + API_KEY,
+                type: 'GET',
+                dataType: 'json',
+                data: {
+
+                },
+                success: function(json) {
+
+                    var sumNamenospace = sumName.replace(" ", "");
+
+                    sumNamenospace = sumNamenospace.toLowerCase().trim();
+
+                    summonerLevel = json[sumNamenospace].summonerLevel;
+                    console.log(summonerLevel);
+                    summonerID = json[sumNamenospace].id;
+
+                    //$("sLevel").html(summonerLevel);
+                    //$("sID").html(summonerID);
+
+                    //good old javascript to fill the fields
+                    document.getElementById("sName").innerHTML = sumNamenospace;
+                    document.getElementById("sLevel").innerHTML = summonerLevel;
+
+                    //cal function to get stats
+                    getStats(summonerID);
+
+                    //getHighestMastery(summonerID);
+
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    alert("error getting Summoner data 1!");
+                }
+            });
+
+        } else {}
+
+
+
+
+    }
+
+    //function for getting wins and losses data
+    function getStats(summonerID) {
+        $.ajax({
+            url: 'https://na.api.pvp.net/api/lol/na/v1.3/stats/by-summoner/' + summonerID + '/summary?season=SEASON2016&api_key=' + API_KEY,
+            type: 'GET',
+            dataType: 'json',
+            data: {
+
+            },
+            success: function(json) {
+
+                //ranked wins
+                wins = json.playerStatSummaries[3].wins;
+
+                //flex wins
+                wins += json.playerStatSummaries[13].wins;
+
+                //ranked losses
+                losses = json.playerStatSummaries[3].losses;
+
+                //normal wins
+                normalWins = json.playerStatSummaries[0].wins;
+                normalWins += json.playerStatSummaries[14].wins;
+
+                document.getElementById("wins").innerHTML = wins;
+                document.getElementById("losses").innerHTML = losses;
+                document.getElementById("normalWins").innerHTML = normalWins;
+
+                //calling function to calculate time spent
+                calculateTime(wins, losses, normalWins);
+
+
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                alert("error getting Summoner data 1!");
+            }
+        });
+    }
+
+    //function to get highest mastery. doesn't work because of the API header
+    function getHighestMastery(summonerID) {
+        $.ajax({
+            url: "https://na.api.pvp.net/championmastery/location/NA1/player/" + summonerID + "/topchampions?count=1&api_key=" + API_KEY,
+            type: 'GET',
+            dataType: 'json',
+            crossDomain: 'true',
+            data: {
+
+            },
+            success: function(json) {
+
+                //ranked wins
+                champID = json[0].championId;
+
+                //flex wins
+                points = json[0].championPoints;
+
+                //ranked losses
+                champLevel = json[0].championLevel;
+
+                console.log(champID);
+                console.log(points);
+                console.log(champLevel);
+
+
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                alert("error getting Summoner data 1!");
+            }
+        });
+
+    }
+
+    //simple function to calculate the time spent assuming average game time of 35 minutes
+    function calculateTime(wins, losses, normalWins) {
+        var timeSpent;
+
+        timeSpent = 35 * (wins + losses + normalWins);
+        timeSpentDays = timeSpent / (24 * 60);
+        timeSpentDays = +timeSpentDays.toFixed(1);
+
+        document.getElementById("minutes").innerHTML = timeSpent;
+        document.getElementById("days").innerHTML = timeSpentDays;
+
+    }
     </script>
 </body>
 
