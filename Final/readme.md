@@ -1,6 +1,6 @@
 Blog
 
-sampletextgoeshere.blogspot.com 
+http://sampletextgoeshere.blogspot.com/
 
 Site
 
